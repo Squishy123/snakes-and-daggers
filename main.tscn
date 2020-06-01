@@ -33,5 +33,5 @@ shape = SubResource( 1 )
 scale = Vector2( 2, 2 )
 frames = ExtResource( 2 )
 animation = "double_jump"
-frame = 2
+frame = 3
 playing = true

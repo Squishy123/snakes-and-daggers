@@ -13,3 +13,4 @@ script = ExtResource( 1 )
 
 [node name="State2" type="Node" parent="."]
 script = ExtResource( 3 )
+[connection signal="state_changed" from="." to="." method="on_state_changed"]

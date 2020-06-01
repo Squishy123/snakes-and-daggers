@@ -5,7 +5,7 @@ extends Node
 var fsm
 
 func enter():
-	print("Hello from State2!")
+	print("Hello from State 2!")
 	yield(get_tree().create_timer(2.0), "timeout")
 	exit()
 
