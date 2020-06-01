@@ -34,11 +34,6 @@ func handle_movement(delta):
 			velocity.y = jump_speed
 			vDir = 1
 	
-	if Input.is_action_just_pressed("ui_down"):
-		if !is_on_floor():
-			velocity.y = -jump_speed
-			vDir = -1
-	
 	if velocity.y == 0:
 		vDir = 0
 	

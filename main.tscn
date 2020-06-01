@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://dungeon.tres" type="TileSet" id=1]
 [ext_resource path="res://spritesheets/ninja_frog.tres" type="SpriteFrames" id=2]
-[ext_resource path="res://Player.gd" type="Script" id=4]
+[ext_resource path="res://components/statemachine/ExampleStateMachine.tscn" type="PackedScene" id=3]
+[ext_resource path="res://components/player/states/motion/idle.gd" type="Script" id=5]
+[ext_resource path="res://components/player/states/motion/jump.gd" type="Script" id=6]
+[ext_resource path="res://components/player/states/StateMachine.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 21.9587
@@ -20,10 +23,21 @@ tile_data = PoolIntArray( 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65
 
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( 263.699, 139.305 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_group_": true
-}
+
+[node name="StateMachine" parent="Player" instance=ExtResource( 3 )]
+script = ExtResource( 7 )
+INITIAL_STATE = NodePath("idle")
+ANIMATED_SPRITE = NodePath("../AnimatedSprite")
+
+[node name="idle" type="Node" parent="Player/StateMachine"]
+script = ExtResource( 5 )
+
+[node name="jump" type="Node" parent="Player/StateMachine"]
+script = ExtResource( 6 )
+
+[node name="walk" type="Node" parent="Player/StateMachine"]
+
+[node name="wall_jump" type="Node" parent="Player/StateMachine"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2( 0.333649, 4.74918 )
@@ -33,5 +47,5 @@ shape = SubResource( 1 )
 scale = Vector2( 2, 2 )
 frames = ExtResource( 2 )
 animation = "double_jump"
-frame = 3
+frame = 1
 playing = true
